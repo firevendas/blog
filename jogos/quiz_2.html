@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Quiz </title>
+      <link rel="shortcut icon" href="../assets/LogoFV.png" type="image/x-icon">
+      <style>
+         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+         :root {
+         --black-matte: rgb(112, 2, 2);
+         --white-matte: #f5f5f5;
+         --gray-text: #888;
+         }
+         body {
+         font-family: 'Inter', sans-serif;
+         text-align: center;
+         background-color: var(--black-matte);
+         color: var(--white-matte);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100vh;
+         margin: 0;
+         }
+         .quiz-container {
+         width: 90%;
+         max-width: 450px;
+         padding: 25px;
+         background: var(--white-matte);
+         border-radius: 12px;
+         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+         color: var(--black-matte);
+         animation: fadeIn 0.8s ease-in-out;
+         }
+         h1 {
+         font-size: 22px;
+         font-weight: 600;
+         margin-bottom: 20px;
+         }
+         #pergunta {
+         font-size: 18px;
+         font-weight: 400;
+         margin-bottom: 15px;
+         }
+         button {
+         width: 100%;
+         background: var(--black-matte);
+         color: var(--white-matte);
+         border: none;
+         padding: 12px;
+         font-size: 14px;
+         border-radius: 8px;
+         cursor: pointer;
+         transition: opacity 0.2s;
+         }
+         button:hover {
+         opacity: 0.85;
+         }
+         .opcao {
+         background: var(--white-matte);
+         border: 1px solid var(--black-matte);
+         color: var(--black-matte);
+         padding: 10px;
+         width: 100%;
+         margin: 5px 0;
+         border-radius: 8px;
+         cursor: pointer;
+         font-size: 14px;
+         transition: background 0.2s, color 0.2s;
+         }
+         .opcao:hover {
+         background: var(--black-matte);
+         color: var(--white-matte);
+         }
+         #resultado {
+         font-size: 16px;
+         font-weight: bold;
+         color: var(--gray-text);
+         margin-top: 20px;
+         display: none;
+         }
+         @keyframes fadeIn {
+         from {
+         opacity: 0;
+         transform: translateY(-10px);
+         }
+         to {
+         opacity: 1;
+         transform: translateY(0);
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <div class="quiz-container">
+         <h1>Quiz Estratégias de Vendas</h1>
+         <div id="pergunta-container">
+            <p id="pergunta"></p>
+            <div id="opcoes"></div>
+         </div>
+         <button id="proximo">Próxima</button>
+         <p id="resultado"></p>
+      </div>
+      <script>const perguntas = [
+            {
+                pergunta: "O que é um funil de vendas?",
+                respostas: { a: "Um processo para guiar um cliente até a compra", b: "Uma ferramenta de design gráfico", c: "Uma técnica para encontrar fornecedores" },
+                correta: "a"
+            },
+            {
+                pergunta: "O que significa 'lead' no marketing digital?",
+                respostas: { a: "Uma venda realizada", b: "Um cliente em potencial", c: "Uma métrica de engajamento" },
+                correta: "b"
+            },
+            {
+                pergunta: "Qual dessas estratégias é usada para aumentar a conversão em vendas online?",
+                respostas: { a: "Ofertas irresistíveis e escassez", b: "Aumento dos preços sem motivo", c: "Publicar apenas uma vez por mês" },
+                correta: "a"
+            },
+            {
+                pergunta: "O que é copywriting?",
+                respostas: { a: "A arte de escrever textos persuasivos para vendas", b: "Um método de criar imagens para anúncios", c: "Uma técnica de SEO" },
+                correta: "a"
+            },
+            {
+                pergunta: "Qual é a principal vantagem do e-mail marketing?",
+                respostas: { a: "Atingir clientes de forma direta e personalizada", b: "Substituir todas as outras estratégias", c: "Ser gratuito e sem necessidade de segmentação" },
+                correta: "a"
+            },
+            {
+                pergunta: "O que é remarketing?",
+                respostas: { a: "Tentar vender novamente para quem já demonstrou interesse", b: "Criar um novo produto para o mesmo público", c: "Enviar e-mails aleatórios para qualquer pessoa" },
+                correta: "a"
+            },
+            {
+                pergunta: "O que é um 'CTA' (Call to Action) em vendas digitais?",
+                respostas: { a: "Uma chamada para ação que incentiva o usuário a agir", b: "Um botão de fechar página", c: "Uma métrica de tráfego" },
+                correta: "a"
+            },
+            {
+                pergunta: "O que significa LTV (Lifetime Value)?",
+                respostas: { a: "Valor total que um cliente gera ao longo do tempo", b: "Número de visitas diárias no site", c: "Custo de um anúncio" },
+                correta: "a"
+            },
+            {
+                pergunta: "Qual dessas redes sociais é mais usada para vendas no digital?",
+                respostas: { a: "Instagram", b: "Pinterest", c: "LinkedIn" },
+                correta: "a"
+            },
+            {
+                pergunta: "O que é tráfego pago?",
+                respostas: { a: "Investir em anúncios para atrair visitantes", b: "Aumentar a velocidade do site", c: "Obter cliques sem gastar dinheiro" },
+                correta: "a"
+            }
+         ];
+         
+         let perguntaAtual = 0;
+         let acertos = 0;
+         
+         const perguntaTexto = document.getElementById("pergunta");
+         const opcoesContainer = document.getElementById("opcoes");
+         const botaoProximo = document.getElementById("proximo");
+         const resultado = document.getElementById("resultado");
+         
+         // Função para mostrar a pergunta atual
+         function mostrarPergunta() {
+         const questao = perguntas[perguntaAtual];
+         perguntaTexto.innerText = questao.pergunta;
+         opcoesContainer.innerHTML = "";
+         
+         for (const letra in questao.respostas) {
+             const button = document.createElement("button");
+             button.innerText = `${questao.respostas[letra]}`;
+             button.classList.add("opcao");
+             button.setAttribute("data-resposta", letra);
+             button.addEventListener("click", verificarResposta);
+             opcoesContainer.appendChild(button);
+         }
+         }
+         
+         // Função para verificar a resposta escolhida
+         function verificarResposta(event) {
+         const respostaEscolhida = event.target.getAttribute("data-resposta");
+         if (respostaEscolhida === perguntas[perguntaAtual].correta) {
+             acertos++;
+         }
+         
+         perguntaAtual++;
+         
+         if (perguntaAtual < perguntas.length) {
+             mostrarPergunta();
+         } else {
+             mostrarResultado();
+         }
+         }
+         
+         // Função para mostrar o resultado final
+         function mostrarResultado() {
+         perguntaTexto.style.display = "none";
+         opcoesContainer.style.display = "none";
+         botaoProximo.style.display = "none";
+         resultado.innerText = `Você acertou ${acertos} de ${perguntas.length} perguntas!`;
+         resultado.style.display = "block";
+         }
+         
+         // Inicializa o quiz
+         mostrarPergunta();
+      </script>
+   </body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Quiz</title>
+      <link rel="shortcut icon" href="../assets/LogoFV.png" type="image/x-icon">
+      <style>
+         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+         :root {
+         --black-matte: rgb(112, 2, 2);
+         --white-matte: #f5f5f5;
+         --gray-text: #888;
+         }
+         body {
+         font-family: 'Inter', sans-serif;
+         text-align: center;
+         background-color: var(--black-matte);
+         color: var(--white-matte);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100vh;
+         margin: 0;
+         }
+         .quiz-container {
+         width: 90%;
+         max-width: 450px;
+         padding: 25px;
+         background: var(--white-matte);
+         border-radius: 12px;
+         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+         color: var(--black-matte);
+         animation: fadeIn 0.8s ease-in-out;
+         }
+         h1 {
+         font-size: 22px;
+         font-weight: 600;
+         margin-bottom: 20px;
+         }
+         #pergunta {
+         font-size: 18px;
+         font-weight: 400;
+         margin-bottom: 15px;
+         }
+         button {
+         width: 100%;
+         background: var(--black-matte);
+         color: var(--white-matte);
+         border: none;
+         padding: 12px;
+         font-size: 14px;
+         border-radius: 8px;
+         cursor: pointer;
+         transition: opacity 0.2s;
+         }
+         button:hover {
+         opacity: 0.85;
+         }
+         .opcao {
+         background: var(--white-matte);
+         border: 1px solid var(--black-matte);
+         color: var(--black-matte);
+         padding: 10px;
+         width: 100%;
+         margin: 5px 0;
+         border-radius: 8px;
+         cursor: pointer;
+         font-size: 14px;
+         transition: background 0.2s, color 0.2s;
+         }
+         .opcao:hover {
+         background: var(--black-matte);
+         color: var(--white-matte);
+         }
+         #resultado {
+         font-size: 16px;
+         font-weight: bold;
+         color: var(--gray-text);
+         margin-top: 20px;
+         display: none;
+         }
+         @keyframes fadeIn {
+         from {
+         opacity: 0;
+         transform: translateY(-10px);
+         }
+         to {
+         opacity: 1;
+         transform: translateY(0);
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <div class="quiz-container">
+         <h1>Quiz de Marketing de Afiliados</h1>
+         <div id="pergunta-container">
+            <p id="pergunta"></p>
+            <div id="opcoes"></div>
+         </div>
+         <button id="proximo">Próxima</button>
+         <p id="resultado"></p>
+      </div>
+      <script>const perguntas = [
+            {
+                pergunta: "O que é marketing de afiliados?",
+                respostas: { a: "Um programa de doações", b: "Um modelo de vendas baseado em comissão", c: "Uma estratégia de publicidade paga" },
+                correta: "b"
+            },
+            {
+                pergunta: "Qual dessas plataformas é popular para programas de afiliados?",
+                respostas: { a: "Amazon Associates", b: "Netflix", c: "Uber Eats" },
+                correta: "a"
+            },
+            {
+                pergunta: "O que um afiliado precisa para ganhar comissão?",
+                respostas: { a: "Vender produtos diretamente", b: "Indicar produtos e gerar conversões", c: "Criar um site próprio" },
+                correta: "b"
+            },
+            {
+                pergunta: "O que significa CPA no marketing de afiliados?",
+                respostas: { a: "Custo por Aquisição", b: "Comissão por Afiliado", c: "Conversão por Anúncio" },
+                correta: "a"
+            },
+            {
+                pergunta: "Qual é uma vantagem do marketing de afiliados?",
+                respostas: { a: "Não exige estoque próprio", b: "Garante renda fixa mensal", c: "Não precisa de audiência" },
+                correta: "a"
+            },
+            {
+                pergunta: "O que é um link de afiliado?",
+                respostas: { a: "Um link especial que rastreia vendas e comissões", b: "Um link genérico de qualquer loja", c: "Um link para baixar materiais gratuitos" },
+                correta: "a"
+            },
+            {
+                pergunta: "Qual tipo de conteúdo é comum para afiliados promoverem produtos?",
+                respostas: { a: "Artigos de blog e vídeos", b: "Memes e piadas", c: "Apenas anúncios pagos" },
+                correta: "a"
+            },
+            {
+                pergunta: "Qual dessas estratégias pode aumentar as conversões de afiliados?",
+                respostas: { a: "Criar conteúdo relevante e de valor", b: "Compartilhar links aleatórios", c: "Postar links apenas uma vez" },
+                correta: "a"
+            },
+            {
+                pergunta: "Qual métrica é mais importante para medir o sucesso do marketing de afiliados?",
+                respostas: { a: "Número de curtidas", b: "Taxa de conversão", c: "Número de seguidores" },
+                correta: "b"
+            },
+            {
+                pergunta: "Qual dessas é uma rede de afiliados?",
+                respostas: { a: "Google Drive", b: "Hotmart", c: "Spotify" },
+                correta: "b"
+            }
+         ];
+         
+         let perguntaAtual = 0;
+         let acertos = 0;
+         
+         const perguntaTexto = document.getElementById("pergunta");
+         const opcoesContainer = document.getElementById("opcoes");
+         const botaoProximo = document.getElementById("proximo");
+         const resultado = document.getElementById("resultado");
+         
+         // Função para mostrar a pergunta atual
+         function mostrarPergunta() {
+         const questao = perguntas[perguntaAtual];
+         perguntaTexto.innerText = questao.pergunta;
+         opcoesContainer.innerHTML = "";
+         
+         for (const letra in questao.respostas) {
+             const button = document.createElement("button");
+             button.innerText = `${questao.respostas[letra]}`;
+             button.classList.add("opcao");
+             button.setAttribute("data-resposta", letra);
+             button.addEventListener("click", verificarResposta);
+             opcoesContainer.appendChild(button);
+         }
+         }
+         
+         // Função para verificar a resposta escolhida
+         function verificarResposta(event) {
+         const respostaEscolhida = event.target.getAttribute("data-resposta");
+         if (respostaEscolhida === perguntas[perguntaAtual].correta) {
+             acertos++;
+         }
+         
+         perguntaAtual++;
+         
+         if (perguntaAtual < perguntas.length) {
+             mostrarPergunta();
+         } else {
+             mostrarResultado();
+         }
+         }
+         
+         // Função para mostrar o resultado final
+         function mostrarResultado() {
+         perguntaTexto.style.display = "none";
+         opcoesContainer.style.display = "none";
+         botaoProximo.style.display = "none";
+         resultado.innerText = `Você acertou ${acertos} de ${perguntas.length} perguntas!`;
+         resultado.style.display = "block";
+         }
+         
+         // Inicializa o quiz
+         mostrarPergunta();
+      </script>
+   </body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>FireVendas - Comunidade</title>
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/alphardex/aqua.css/dist/aqua.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/css.gg/icons/all.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+      <link rel="shortcut icon" href="assets/LogoFV.png" type="image/x-icon">
+      <style>
+         body {
+         font-family: 'Barlow', sans-serif;
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         }
+         .mobile-toggle {
+         display: none;
+         position: fixed;
+         top: 20px;
+         left: 20px;
+         z-index: 1000;
+         background: #fff;
+         border: none;
+         padding: 10px;
+         border-radius: 5px;
+         box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+         cursor: pointer;
+         }
+         #sidebar {
+         transition: transform 0.3s ease-in-out;
+         }
+         @media (max-width: 768px) {
+         .mobile-toggle {
+         display: block; 
+         }
+         #sidebar {
+         transform: translateX(-100%);
+         position: fixed;
+         top: 0;
+         left: 0;
+         height: 100vh;
+         z-index: 999;
+         }
+         #sidebar.active {
+         transform: translateX(0);
+         }
+         }
+         .cards-container {
+         display: flex;
+         align-items: center;
+         gap: 20px;
+         flex-wrap: wrap;
+         justify-content: center;
+         padding: 20px;
+         }
+         .card {
+         width: 100%;
+         max-width: 30%;
+         min-width: 280px; 
+         background: #fff;
+         border-radius: 10px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         overflow: hidden;
+         }
+         .card img {
+         width: 100%;
+         height: auto;
+         }
+         .card-body {
+         padding: 15px;
+         }
+         .card-body h5 {
+         font-size: 1.5em;
+         margin: 0px;
+         }
+         .btn {
+         display: inline-block;
+         padding: 10px 15px;
+         background-color: #007bff;
+         color: white;
+         text-decoration: none;
+         border-radius: 5px;
+         }
+         .btn:hover {
+         background-color: #0056b3;
+         }
+         @media (max-width: 768px) {
+         .card {
+         max-width: 45%;
+         }
+         #topo{
+         flex-direction: column;
+         }
+         }
+         @media (max-width: 480px) {
+         .card {
+         max-width: 100%; 
+         }
+         }
+      </style>
+   </head>
+   <body style="background-color: #fff !important; ">
+      <div class="dashboard flex w-full">
+         <button id="sidebarToggle" class="mobile-toggle">
+         <i class="gg-menu"></i>
+         </button>
+         <div id="sidebar" class="pl-8 py-16 flex flex-col justify-between bg-white rounded-lg rounded-r-none">
+            <div>
+               <div class="flex items-center" style="margin-bottom: -80px;">
+                  <div class="w-12 h-12 flex items-center justify-center font-bold text-3xl text-white bg-blue-2 rounded" style="background-color: rgb(112, 2, 2);"><img src="assets/LogoFV.png" alt="" width="70px" style="border-radius: 5px;"></div>
+                  <div class="ml-8 font-bold text-3xl text-blue-1">FireVendas</div>
+               </div>
+               <div class="nav-bar mt-32 ml-4 space-y-16">
+                  <div class="nav-item " style="margin-bottom: -20px; "  onclick="window.location.href='index.html';">
+                     <i class="gg-board"></i>
+                     <span class="ml-12">Dashboard</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.location.href='afiliado.html';">
+                     <i class="gg-folder"></i>
+                     <span class="ml-11">Área do Afiliado</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.location.href='centrodeaprendizado.html';"> 
+                     <i class="gg-file-document"></i>
+                     <span class="ml-13">Centro de Aprendizado</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.open('https://discord.com/invite/xHJXSeSAA4', '_blank')">
+                     <i class="gg-calendar"></i>
+                     <span class="ml-12">Comunidade</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.location.href='ferramentas.html';">
+                     <i class="gg-comment"></i>
+                     <span class="ml-11">Ferramentas</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.location.href='jogos.html';">
+                     <i class="gg-square"></i>
+                     <span class="ml-14">Jogos</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.location.href='links.html';">
+                     <i class="gg-options"></i>
+                     <span class="ml-14">Links</span>
+                  </div>
+               </div>
+               <div class="mr-8 p-8 bg-blue-4 rounded mt-15">
+                  <div class="text-center text-grey-1 leading-relaxed">
+                     Upgrade p/ <span class="text-blue-5 font-bold">PRO</span> e <br>
+                     Venda muito mais!
+                  </div>
+                  <div class="mt-12 px-12 py-6 leading-none font-bold text-white bg-blue-2 rounded cursor-pointer" onclick="window.location.href='upgrade.html';">Upgrade</div>
+               </div>
+            </div>
+         </div>
+         <div class="flex-1 px-4 sm:px-8 py-8 sm:py-16 bg-blue-4">
+            <div class="flex flex-col space-y-8 sm:space-y-12">
+               <div class="flex  sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0" id="topo">
+                  <span class="font-bold text-xl  text-blue-1 mt-10" style="font-size: 2em;">Upgrade</span>
+                  <div class="flex flex-wrap items-center space-x-4 mb-2">
+                     <span class="text-grey-1 text-sm sm:text-base mt-7" id="todayDate">14 de Outubro de 2025, Quarta-Feira</span>
+                  </div>
+               </div>
+               <div class="relative p-6 sm:p-12 sm:pl-20 bg-red-1 rounded-md">
+                  <div class="text-2xl sm:text-3xl font-bold text-red-2" style="font-weight: bolder;">Faça o upgrade e venda MUITO MAIS!</div>
+                  <div class="mt-4 sm:mt-8 text-base sm:text-lg leading-relaxed">
+                     Transforme-se em um empreededor com a FV <br>E veja suas vendas dispararem!
+                  </div>
+               </div>
+               <section class="container ml-15 mr-15 " style="margin-bottom: -20px;" >
+                  <h1  style="  font-size: 2em;"><strong style="color: rgb(112, 2, 2); background-color: #f8e4ec;">Conheça nossos Produtos </strong></h1>
+                  <p style="font-size: 1.3em; line-height: 150%">Explore produtos exclusivos para potencializar sua jornada. Selecione itens que vão acelerar seus resultados, com <strong>materiais de treinamento</strong> e ferramentas para facilitar suas vendas e <strong>garantir o sucesso no marketing digital</strong>.</p>
+               </section>
+               <div class="cards-container">
+                  <div class="card">
+                     <img src="assets/LogoFV.png" class="card-img-top" alt="..." style="border-radius: 10px;">
+                     <div class="card-body">
+                        <h5 style="text-align: left; margin: 0px;">Treinamento Completo!</h5>
+                        <p>Descubra o passo a passo para faturar mais de R$2.000 todos os meses, mesmo que você seja um iniciante no mercado!</p>
+                        <a href="https://pay.cakto.com.br/BMTVyAS" class="btn " style="background-color: #700202 !important;">Acessar Agora!</a>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <img src="assets/grupo.png" class="card-img-top" alt="..." style="border-radius: 10px;">
+                     <div class="card-body">
+                        <h5>Networking Exclusivo</h5>
+                        <p>Acesso ao Grupo de Networking, Diversos Materiais Exclusivos, Benefícios e Muito Mais para Você!</p>
+                        <a href="https://pay.cakto.com.br/BMTVyAS" class="btn " style="background-color: #700202 !important;">Acessar Agora!</a>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <img src="assets/material-2.jpg" class="card-img-top" alt="..." style="border-radius: 10px;">
+                     <div class="card-body">
+                        <h5>Curso Gratuito</h5>
+                        <p>Assista o curso Gratuito e assista chover resultados enquanto aprende a impulsionar suas vendas!</p>
+                        <a href="https://pay.kirvano.com/1b17cd6e-d043-423a-8d44-8802c146eecb" class="btn" style="background-color: #700202 !important;">Acessar Agora!</a>
+                     </div>
+                  </div>
+               </div>
+               <section class="container ml-15 mr-15 " style="margin-bottom: -20px;" >
+                  <h1  style="  font-size: 2em;"><strong style="color: rgb(112, 2, 2); background-color: #f8e4ec;">Seja Membro</strong></h1>
+                  <p style="font-size: 1.3em; line-height: 150%;">O FV é um programa de capacitação para quer garantir a vida no marketing digital, <strong>conquistar suas primeiras vendas de maneira segura e prática será só o começo</strong>. Aqui, você vai aprender com uma abordagem simples, mas altamente eficaz, para acelerar seu sucesso no mercado online.</p>
+                  <p style="font-size: 1.3em; line-height: 150%">O que o Primeira Venda Online oferece:</p>
+                  <ul style="font-size: 1.3em; line-height: 150%">
+                     <li>Conteúdo abrangente: <strong>Aulas organizadas</strong> de forma didática, do nível iniciante ao avançado, para que você entenda todos os processos.</li>
+                     <li>32 módulos exclusivos: Conhecimento completo sobre marketing digital, com <strong>técnicas testadas</strong> para otimizar suas vendas.</li>
+                     <li><strong>Grupo interativo</strong>: Envolva-se com a comunidade de alunos, compartilhe dúvidas e experiências de forma direta.</li>
+                     <li>Apoio constante: Nossa equipe está sempre pronta para responder suas questões e garantir seu progresso.</li>
+                     <li> Interação no Discord: Participação em discussões e troca de ideias em tempo real com outros alunos e professores.</li>
+                     <li><strong>Aulas práticas e objetivas</strong>: Conteúdos simplificados para você aplicar no seu trabalho com rapidez e eficiência.</li>
+                  </ul>
+                  <p style="font-size: 1.3em; line-height: 150%"><strong>Bônus exclusivos:  </strong></p>
+                  <ul style="font-size: 1.3em; line-height: 150%">
+                     <li> Reconhecimentos e recompensas: A cada meta superada, você é premiado com benefícios exclusivos.</li>
+                     <li> Marcos Reais: Premiações como plaquinhas e pulseiras para celebrar suas conquistas.</li>
+                  </ul>
+                  <p style="font-size: 1.3em; line-height: 150%">Com mais de 3 mil participantes, o FV é uma rede vibrante de pessoas empenhadas em conquistar resultados significativos no marketing digital.</p>
+                  <p style="font-size: 1.3em; line-height: 150%"></p>
+                  <p style="font-size: 1.3em; line-height: 150%"><strong>Excelente relação custo-benefício</strong>: O FV oferece um curso completo, com suporte contínuo, a um preço acessível, para garantir que você tenha tudo o que precisa para decolar no marketing digital.</p>
+               </section>
+            </div>
+            <footer style="position: relative; bottom: 0;  color: rgba(47, 47, 47, 0.545); text-align: center; padding: 10px 0; font-size: 10px;">
+              <a href="https://www.instagram.com/nichollasdev/" style="color: rgb(199, 199, 199);"><p>Desenvolvido por @Nichollasdev</p></a>
+            </footer>
+         </div>
+      </div>
+      <script>
+         document.getElementById('sidebarToggle').addEventListener('click', function() {
+             var sidebar = document.getElementById('sidebar');
+             sidebar.classList.toggle('active');
+         });
+         function formatDate() {
+           const today = new Date();
+           const day = today.getDate();
+           const month = today.toLocaleString('pt-BR', { month: 'long' });
+           const year = today.getFullYear();
+           const weekday = today.toLocaleString('pt-BR', { weekday: 'long' });
+           const formattedDate = `${day} de ${month} de ${year}, ${weekday.charAt(0).toUpperCase() + weekday.slice(1)}`;
+           document.getElementById("todayDate").textContent = formattedDate;
+         }
+         window.onload = formatDate;
+      </script>
+   </body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>FireVendas - Comunidade</title>
+      <link rel="stylesheet" href="../style.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/alphardex/aqua.css/dist/aqua.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/css.gg/icons/all.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+      <link rel="shortcut icon" href="../assets/LogoFV.png" type="image/x-icon">
+      <style>
+         body {
+         font-family: 'Barlow', sans-serif;
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         }
+         a {
+         all: unset;
+         }
+         .mobile-toggle {
+         display: none;
+         position: fixed;
+         top: 20px;
+         left: 20px;
+         z-index: 1000;
+         background: #fff;
+         border: none;
+         padding: 10px;
+         border-radius: 5px;
+         box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+         cursor: pointer;
+         }
+         #sidebar {
+         transition: transform 0.3s ease-in-out;
+         }
+         @media (max-width: 768px) {
+         .mobile-toggle {
+         display: block;
+         }
+         #sidebar {
+         transform: translateX(-100%);
+         position: fixed;
+         top: 0;
+         left: 0;
+         height: 100vh;
+         z-index: 999;
+         }
+         #sidebar.active {
+         transform: translateX(0);
+         }
+         }
+         .cards-container {
+         display: flex;
+         align-items: center;
+         gap: 20px;
+         flex-wrap: wrap;
+         justify-content: center;
+         padding: 20px;
+         }
+         .card {
+         width: 100%;
+         max-width: 30%;
+         min-width: 280px; 
+         background: #fff;
+         border-radius: 10px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         overflow: hidden;
+         }
+         .card img {
+         width: 100%;
+         height: auto;
+         }
+         .card-body {
+         padding: 15px;
+         }
+         .card-body h5 {
+         font-size: 1.5em;
+         margin: 0px;
+         }
+         .btn {
+         display: inline-block;
+         padding: 10px 15px;
+         background-color: #007bff;
+         color: white;
+         text-decoration: none;
+         border-radius: 5px;
+         }
+         .btn:hover {
+         background-color: #0056b3;
+         }
+         @media (max-width: 768px) {
+         .card {
+         max-width: 45%; 
+         }
+         #topo{
+         flex-direction: column;
+         }
+         }
+         @media (max-width: 480px) {
+         .card {
+         max-width: 100%; 
+         }
+         }
+         .form-label {
+         font-weight: 600;
+         color: rgb(112, 2, 2);
+         }
+         .form-control {
+         border-color: rgb(112, 2, 2);
+         box-shadow: none;
+         }
+         .form-control:focus {
+         border-color: rgb(112, 2, 2);
+         box-shadow: 0 0 5px rgba(112, 2, 2, 0.5);
+         }
+         .btn-primary {
+         background-color: rgb(112, 2, 2);
+         border-color: rgb(112, 2, 2);
+         }
+         .btn-primary:hover {
+         background-color: #8b0000;
+         border-color: #8b0000;
+         }
+         .result {
+         background-color: #f9f9f9;
+         padding: 20px;
+         border-radius: 8px;
+         margin-top: 20px;
+         border: 1px solid #e1e1e1;
+         }
+         .result h4 {
+         color: rgb(112, 2, 2);
+         }
+         .result p {
+         font-size: 1.1rem;
+         }
+         .mb-3 {
+         margin-bottom: 1.5rem;
+         }
+      </style>
+      <script>
+         function calcularMetaVendas() {
+             const metaVendas = parseFloat(document.getElementById('metaVendas').value);
+             const comissaoVenda = parseFloat(document.getElementById('comissaoVenda').value);
+             const dias = parseInt(document.getElementById('quantidadeDias').value);
+         
+             if (metaVendas <= 0 || comissaoVenda <= 0 || dias <= 0) {
+                 alert("Por favor, preencha todos os campos corretamente.");
+                 return;
+             }
+         
+             const vendasNecessarias = metaVendas / comissaoVenda;
+             const totalComissao = vendasNecessarias * comissaoVenda;
+             const vendasDiarias = vendasNecessarias / dias;
+             const vendasSemana = vendasDiarias * 7;
+             const vendasMensais = vendasDiarias * 30;
+             const esforcoNecessario = vendasDiarias <= 5 ? "Baixo" : vendasDiarias <= 10 ? "Médio" : "Alto";
+         
+             document.getElementById('vendasNecessarias').innerText = vendasNecessarias.toFixed(2);
+             document.getElementById('totalComissao').innerText = `R$ ${totalComissao.toFixed(2)}`;
+             document.getElementById('vendasDiarias').innerText = vendasDiarias.toFixed(2);
+             document.getElementById('vendasSemana').innerText = vendasSemana.toFixed(2);
+             document.getElementById('vendasMensais').innerText = vendasMensais.toFixed(2);
+             document.getElementById('esforcoNecessario').innerText = esforcoNecessario;
+         }
+      </script>
+   </head>
+   <body style="background-color: #fff !important;">
+      <div class="dashboard flex w-full">
+         <button id="sidebarToggle" class="mobile-toggle">
+         <i class="gg-menu"></i>
+         </button>
+         <div id="sidebar" class="pl-8 py-16 flex flex-col justify-between bg-white rounded-lg rounded-r-none">
+            <div>
+               <div class="flex items-center" style="margin-bottom: -80px;">
+                  <div class="w-12 h-12 flex items-center justify-center font-bold text-3xl text-white bg-blue-2 rounded" style="background-color: rgb(112, 2, 2);"><img src="../assets/LogoFV.png" alt="" width="70px" style="border-radius: 5px;"></div>
+                  <div class="ml-8 font-bold text-3xl text-blue-1">FireVendas</div>
+               </div>
+               <div class="nav-bar mt-32 ml-4 space-y-16">
+                  <div class="nav-item " style="margin-bottom: -20px; "  onclick="window.location.href='../index.html';">
+                     <i class="gg-board"></i>
+                     <span class="ml-12">Dashboard</span>
+                  </div>
+                  <div class="nav-item " style="margin-bottom: -20px;" onclick="window.location.href='../afiliado.html';">
+                     <i class="gg-folder"></i>
+                     <span class="ml-11">Área do Afiliado</span>
+                  </div>
+                  <div class="nav-item " style="margin-bottom: -20px;" onclick="window.location.href='../centrodeaprendizado.html';"> 
+                     <i class="gg-file-document"></i>
+                     <span class="ml-13">Centro de Aprendizado</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.open('https://discord.com/invite/xHJXSeSAA4', '_blank')">
+                     <i class="gg-calendar"></i>
+                     <span class="ml-12">Comunidade</span>
+                  </div>
+                  <div class="nav-item active" style="margin-bottom: -20px;" onclick="window.location.href='../ferramentas.html';">
+                     <i class="gg-comment"></i>
+                     <span class="ml-11">Ferramentas</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.location.href='../jogos.html';">
+                     <i class="gg-square"></i>
+                     <span class="ml-14">Jogos</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.location.href='../links.html';">
+                     <i class="gg-options"></i>
+                     <span class="ml-14">Links</span>
+                  </div>
+               </div>
+               <div class="mr-8 p-8 bg-blue-4 rounded mt-15">
+                  <div class="text-center text-grey-1 leading-relaxed">
+                     Upgrade p/ <span class="text-blue-5 font-bold">PRO</span> e <br>
+                     Venda muito mais!
+                  </div>
+                  <div class="mt-12 px-12 py-6 leading-none font-bold text-white bg-blue-2 rounded cursor-pointer" onclick="window.location.href='../upgrade.html';">Upgrade</div>
+               </div>
+            </div>
+         </div>
+         <div class="flex-1 px-4 sm:px-8 py-8 sm:py-16 bg-blue-4">
+            <div class="flex flex-col space-y-8 sm:space-y-12">
+               <div class="flex  sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0" id="topo">
+                  <span class="font-bold text-xl  text-blue-1 mt-10" style="font-size: 2em;">Ferramentas</span>
+                  <div class="flex flex-wrap items-center space-x-4 mb-2">
+                     <span class="text-grey-1 text-sm sm:text-base mt-7" id="todayDate">14 de Outubro de 2025, Quarta-Feira</span>
+                  </div>
+               </div>
+               <div class="relative p-6 sm:p-12 sm:pl-20 bg-red-1 rounded-md">
+                  <div class="text-2xl sm:text-3xl font-bold text-red-2">Planeje Suas Metas de Vendas e Atinga Seus Objetivos</div>
+                  <div class="mt-4 sm:mt-8 text-base sm:text-lg leading-relaxed">
+                     Organize Suas Vendas de Forma Estratégica. <br> Acompanhe Seu Progresso e Ajuste Suas Ações.
+                  </div>
+               </div>
+               <div class=" mx-1 p-5" style="background-color: white; border-radius: 10px;">
+                  <h1>Planejador de Metas de Vendas</h1>
+                  <form>
+                     <div class="mb-4" style="display: flex; justify-content: space-between;"> 
+                        <label for="metaVendas" class="form-label">Meta de Vendas (R$)</label>
+                        <input type="number" class="form-control" id="metaVendas" placeholder="R$ 5000,00" required style="width: 50%; border: 3px rgb(105, 0, 0) solid; border-radius: 2px;">
+                     </div>
+                     <div class="mb-4" style="display: flex; justify-content: space-between;">
+                        <label for="comissaoVenda" class="form-label">Sua Comissão por Venda (R$)</label>
+                        <input type="number" class="form-control" id="comissaoVenda" placeholder="R$ 100,00" required style="width: 50%; border: 3px rgb(105, 0, 0) solid; border-radius: 2px;">
+                     </div>
+                     <div class="mb-4" style="display: flex; justify-content: space-between;">
+                        <label for="quantidadeDias" class="form-label">Quantidade de Dias</label>
+                        <input type="number" class="form-control" id="quantidadeDias" placeholder="30" required style="width: 50%; border: 3px rgb(105, 0, 0) solid; border-radius: 2px;">
+                     </div>
+                     <div style="display: flex; justify-content: end;"> 
+                        <button type="button" class="btn btn-primary " onclick="calcularMetaVendas()" style="border: 3px solid rgb(105, 0, 0); background-color: transparent; color: #8b0000 !important; font-weight: bold; font-size: 1.2em; padding: 5px 20px; border-radius: 3px;">Calcular</button>
+                     </div>
+                  </form>
+                  <div class="result">
+                     <h4>Resultado:</h4>
+                     <p><strong>Vendas Necessárias:</strong> <span id="vendasNecessarias">0</span></p>
+                     <p><strong>Total de Comissão:</strong> <span id="totalComissao">R$ 0,00</span></p>
+                     <p><strong>Vendas Diárias:</strong> <span id="vendasDiarias">0</span></p>
+                     <p><strong>Vendas Semanais:</strong> <span id="vendasSemana">0</span></p>
+                     <p><strong>Vendas Mensais:</strong> <span id="vendasMensais">0</span></p>
+                     <p><strong>Esforço Necessário:</strong> <span id="esforcoNecessario">Baixo</span></p>
+                  </div>
+               </div>
+            </div>
+            <footer style="position: relative; bottom: 0;  color: rgba(47, 47, 47, 0.545); text-align: center; padding: 10px 0; font-size: 10px;">
+              <a href="https://www.instagram.com/nichollasdev/" style="color: rgb(199, 199, 199);"><p>Desenvolvido por @Nichollasdev</p></a>
+            </footer>
+         </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybHyJrX3nsFfuHf7gs66TQ9tG5L+g6nsxJwWx8J5b3zE3zjff" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrz5vPpQchCx5EO19j8At+URBdRz4c5UGpsU6OrQ+Ud+5p" crossorigin="anonymous"></script>
+      <script>
+         document.getElementById('sidebarToggle').addEventListener('click', function() {
+             var sidebar = document.getElementById('sidebar');
+             sidebar.classList.toggle('active');
+         });
+         
+         function formatDate() {
+           const today = new Date();
+           const day = today.getDate();
+           const month = today.toLocaleString('pt-BR', { month: 'long' });
+           const year = today.getFullYear();
+           const weekday = today.toLocaleString('pt-BR', { weekday: 'long' });
+           const formattedDate = `${day} de ${month} de ${year}, ${weekday.charAt(0).toUpperCase() + weekday.slice(1)}`;
+           document.getElementById("todayDate").textContent = formattedDate;
+         }
+         window.onload = formatDate;
+      </script>
+   </body>
+</html>

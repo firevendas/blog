@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>FireVendas - Comunidade</title>
+      <link rel="stylesheet" href="../style.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/alphardex/aqua.css/dist/aqua.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/css.gg/icons/all.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+      <link rel="shortcut icon" href="../assets/LogoFV.png" type="image/x-icon">
+      <style>
+         body {
+         font-family: 'Barlow', sans-serif;
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         }
+         .mobile-toggle {
+         display: none; 
+         position: fixed;
+         top: 20px;
+         left: 20px;
+         z-index: 1000;
+         background: #fff;
+         border: none;
+         padding: 10px;
+         border-radius: 5px;
+         box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+         cursor: pointer;
+         }
+         #sidebar {
+         transition: transform 0.3s ease-in-out;
+         }
+         @media (max-width: 768px) {
+         .mobile-toggle {
+         display: block; 
+         }
+         #sidebar {
+         transform: translateX(-100%);
+         position: fixed;
+         top: 0;
+         left: 0;
+         height: 100vh;
+         z-index: 999;
+         }
+         #sidebar.active {
+         transform: translateX(0);
+         }
+         }
+         .cards-container {
+         display: flex;
+         align-items: center;
+         gap: 20px;
+         flex-wrap: wrap;
+         justify-content: center;
+         padding: 20px;
+         }
+         .card {
+         width: 100%;
+         max-width: 30%;
+         min-width: 280px; 
+         background: #fff;
+         border-radius: 10px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         overflow: hidden;
+         }
+         .card img {
+         width: 100%;
+         height: auto;
+         }
+         .card-body {
+         padding: 15px;
+         }
+         .card-body h5 {
+         font-size: 1.5em;
+         margin: 0px;
+         }
+         .btn {
+         display: inline-block;
+         padding: 10px 15px;
+         background-color: #007bff;
+         color: white;
+         text-decoration: none;
+         border-radius: 5px;
+         }
+         .btn:hover {
+         background-color: #0056b3;
+         }
+         @media (max-width: 768px) {
+         .card {
+         max-width: 45%;
+         }
+         #topo{
+         flex-direction: column;
+         }
+         }
+         @media (max-width: 480px) {
+         .card {
+         max-width: 100%; 
+         }
+         .resp-1{
+            max-width: 100% !important;
+         }
+         }
+      </style>
+   </head>
+   <body style="background-color: #fff !important; ">
+      <div class="dashboard flex w-full">
+         <button id="sidebarToggle" class="mobile-toggle">
+         <i class="gg-menu"></i>
+         </button>
+         <div id="sidebar" class="pl-8 py-16 flex flex-col justify-between bg-white rounded-lg rounded-r-none">
+            <div>
+               <div class="flex items-center" style="margin-bottom: -80px;">
+                  <div class="w-12 h-12 flex items-center justify-center font-bold text-3xl text-white bg-blue-2 rounded" style="background-color: rgb(112, 2, 2);"><img src="../assets/LogoFV.png" alt="" width="70px" style="border-radius: 5px;"></div>
+                  <div class="ml-8 font-bold text-3xl text-blue-1">FireVendas</div>
+               </div>
+               <div class="nav-bar mt-32 ml-4 space-y-16">
+                  <div class="nav-item " style="margin-bottom: -20px; "  onclick="window.location.href='../index.html';">
+                     <i class="gg-board"></i>
+                     <span class="ml-12">Dashboard</span>
+                  </div>
+                  <div class="nav-item " style="margin-bottom: -20px;" onclick="window.location.href='../afiliado.html';">
+                     <i class="gg-folder"></i>
+                     <span class="ml-11">Área do Afiliado</span>
+                  </div>
+                  <div class="nav-item " style="margin-bottom: -20px;" onclick="window.location.href='../centrodeaprendizado.html';"> 
+                     <i class="gg-file-document"></i>
+                     <span class="ml-13">Centro de Aprendizado</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.open('https://discord.com/invite/xHJXSeSAA4', '_blank')">
+                     <i class="gg-calendar"></i>
+                     <span class="ml-12">Comunidade</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.location.href='../ferramentas.html';">
+                     <i class="gg-comment"></i>
+                     <span class="ml-11">Ferramentas</span>
+                  </div>
+                  <div class="nav-item" style="margin-bottom: -20px;" onclick="window.location.href='../jogos.html';">
+                     <i class="gg-square"></i>
+                     <span class="ml-14">Jogos</span>
+                  </div>
+                  <div class="nav-item active" style="margin-bottom: -20px;" onclick="window.location.href='../links.html';">
+                     <i class="gg-options"></i>
+                     <span class="ml-14">Links</span>
+                  </div>
+               </div>
+               <div class="mr-8 p-8 bg-blue-4 rounded mt-15">
+                  <div class="text-center text-grey-1 leading-relaxed">
+                     Upgrade p/ <span class="text-blue-5 font-bold">PRO</span> e <br>
+                     Venda muito mais!
+                  </div>
+                  <div class="mt-12 px-12 py-6 leading-none font-bold text-white bg-blue-2 rounded cursor-pointer" onclick="window.location.href='../upgrade.html';">Upgrade</div>
+               </div>
+            </div>
+         </div>
+         <div class="flex-1 px-4 sm:px-8 py-8 sm:py-16 bg-blue-4">
+            <div class="flex flex-col space-y-8 sm:space-y-12">
+               <div class="flex  sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0" id="topo">
+                  <span class="font-bold text-xl  text-blue-1 mt-10" style="font-size: 2em;">Novidades</span>
+                  <div class="flex flex-wrap items-center space-x-4 mb-2">
+                     <span class="text-grey-1 text-sm sm:text-base mt-7" id="todayDate">14 de Outubro de 2025, Quarta-Feira</span>
+                  </div>
+               </div>
+               <div class="relative p-6 sm:p-12 sm:pl-20 bg-red-1 rounded-md">
+                  <div class="text-2xl sm:text-3xl font-bold text-red-2" style="font-weight: bolder;">Fique Atualizado!
+                  </div>
+                  <div class="mt-4 sm:mt-8 text-base sm:text-lg leading-relaxed">
+                     Acompanhe as últimas novidades, mudanças e melhorias para se manter sempre à frente!
+                  </div>
+               </div>
+               <section class="container ml-15 mr-15 " style="margin-bottom: -20px;" >
+                  <h1  style="  font-size: 2em;"><strong style="color: rgb(112, 2, 2); background-color: #f8e4ec;">Mantenha-se por Dentro! </strong></h1>
+                  <p style="font-size: 1.3em; line-height: 150%">Mantenha-se informado sobre as últimas novidades, atualizações e melhorias do programa de afiliados. Esteja sempre um passo à frente para aproveitar novas oportunidades e otimizar seus resultados!</p>
+               </section>
+               <div class="mx-7" style="gap: 0px; display: flex; flex-wrap: wrap; justify-content: space-between;">
+                <div class="col-12 col-md-5 resp-1" style="border-radius: 10px; padding: 20px; max-width: 45%;" >
+                  <img src="../assets/grupo.png" class="card-img-top" alt="..." style="border: 2px solid rgb(112, 2, 2); width: 100%; border-radius: 20px 20px 0px 0px;">
+                  <div class="card-body" style="background-color: white;">
+                    <h5 style="text-align: left; margin: 0px;">Plafataforma - Comunidades de Afiliados</h5>
+                    <p>Esta plataforma aqui! A reunião de todo o conhecimento, ferramentas e estratégias que você precisa para ter sucesso.</p>
+                  </div>
+                </div>
+                
+                <div class="col-12 col-md-5 resp-1" style="border-radius: 10px; padding: 20px; max-width: 45%;">
+                  <img src="../assets/LogoFV.png" class="card-img-top" alt="..." style="border: solid rgb(112, 2, 2); width: 100%; border-radius: 20px 20px 0px 0px;">
+                  <div class="card-body" style="background-color: white;">
+                    <h5 style="text-align: left; margin: 0px;">Módulos novos - Todas as Semanas!</h5>
+                    <p>Toda semana, novos módulos são adicionados com conteúdos atualizados para aprimorar suas estratégias!</p>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <footer style="position: relative; bottom: 0;  color: rgba(47, 47, 47, 0.545); text-align: center; padding: 10px 0; font-size: 10px;">
+                <a href="https://www.instagram.com/nichollasdev/" style="color: rgb(199, 199, 199);"><p>Desenvolvido por @Nichollasdev</p></a>
+              </footer>
+         </div>
+      </div>
+      <script>
+         document.getElementById('sidebarToggle').addEventListener('click', function() {
+             var sidebar = document.getElementById('sidebar');
+             sidebar.classList.toggle('active');
+         });
+         function formatDate() {
+           const today = new Date();
+           const day = today.getDate();
+           const month = today.toLocaleString('pt-BR', { month: 'long' });
+           const year = today.getFullYear();
+           const weekday = today.toLocaleString('pt-BR', { weekday: 'long' });
+           const formattedDate = `${day} de ${month} de ${year}, ${weekday.charAt(0).toUpperCase() + weekday.slice(1)}`;
+           document.getElementById("todayDate").textContent = formattedDate;
+         }
+         window.onload = formatDate;
+      </script>
+   </body>
+</html>

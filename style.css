@@ -1,0 +1,219 @@
+body {
+    min-height: 100vh;
+    color: var(--blue-color-7);
+    background: var(--grey-color-7);
+}
+:root {
+    --blue-color-1: rgb(112, 2, 2); /* Texto */
+    --blue-color-2: rgb(112, 2, 2); /* Botão */
+    --blue-color-3: #2e2e4d; /* Texto */
+    --blue-color-4: #f5f5fb; /* Body */
+    --blue-color-5: #272747;
+    --blue-color-6: rgba(112, 2, 2, 0.459);
+    --blue-color-7: #18183a; /* Titulo */
+    --blue-color-8: rgb(112, 2, 2);
+    --blue-color-9: #eef2fd;
+    --grey-color-1: rgb(112, 2, 2); /* Texto */
+    --grey-color-2: #242b3a; /* Texto */
+    --grey-color-3: rgb(112, 2, 2);
+    --grey-color-4: #e9e9ee; /* Detalhes */
+    --grey-color-5: rgb(112, 2, 2)  ;
+    --grey-color-6: #ececf2;
+    --grey-color-7: #0e0e0e; /* Fundo */
+    --red-color-1: #f7e5e9; /* Card do topo */
+    --red-color-2: rgb(112, 2, 2);
+    --red-color-3: rgb(112, 2, 2);
+    --red-color-4: #fef2f3;
+    --purple-color-1: #4d4cac;
+    --white-color-transparent: rgba(255, 255, 255, 0.1);
+}
+* {
+    border-width: 0;
+}
+.w-120 {
+    width: 30rem;
+}
+.w-144 {
+    width: 36rem;
+}
+.w-160 {
+    width: 40rem;
+}
+.min-w-120 {
+    min-width: 30rem;
+}
+.min-w-144 {
+    min-width: 36rem;
+}
+.mt-48 {
+    margin-top: 12rem;
+}
+.text-blue-1 {
+    color: var(--blue-color-1);
+}
+.text-blue-2 {
+    color: var(--blue-color-2);
+}
+.text-blue-5 {
+    color: var(--blue-color-5);
+}
+.text-blue-7 {
+    color: var(--blue-color-7);
+}
+.text-grey-1 {
+    color: var(--grey-color-1);
+}
+.text-red-2 {
+    color: var(--red-color-2);
+}
+.text-red-3 {
+    color: var(--red-color-3);
+}
+.bg-blue-2 {
+    background: var(--blue-color-2);
+}
+.bg-blue-4 {
+    background: var(--blue-color-4);
+}
+.bg-blue-6 {
+    background: var(--blue-color-6);
+}
+.bg-blue-8 {
+    background: var(--blue-color-8);
+}
+.bg-blue-9 {
+    background: var(--blue-color-9);
+}
+.bg-red-1 {
+    background: var(--red-color-1);
+}
+.bg-red-3 {
+    background: var(--red-color-3);
+}
+.bg-red-4 {
+    background: var(--red-color-4);
+}
+.bg-purple-1 {
+    background: var(--purple-color-1);
+}
+.bg-grey-5 {
+    background: var(--grey-color-5);
+}
+.bg-white-transparent {
+    background: var(--white-color-transparent);
+}
+.border-grey-6 {
+    border-color: var(--grey-color-6);
+}
+.border-6 {
+    border-width: 6px;
+}
+.divide-grey-4 > * ~ * {
+    border-color: var(--grey-color-4);
+}
+.nav-bar .nav-item {
+    display: flex;
+    align-items: center;
+    color: var(--grey-color-1);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.nav-bar .nav-item.active {
+    font-weight: bold;
+    color: var(--blue-color-7);
+    border-right: 4px solid rgb(112, 2, 2);
+}
+.nav-bar .nav-item.active i {
+    color: var(--blue-color-2);
+}
+.progress-bar {
+    --progress-bar-color: var(--grey-color-3);
+    width: 8rem;
+}
+.progress-bar-vertical {
+    width: 6px;
+    height: 16rem;
+    background: linear-gradient(var(--red-color-3) var(--item-1), var(--purple-color-1) 0 var(--item-2), var(--blue-color-2) 0 var(--item-3), var(--grey-color-5) 0 var(--item-4)) 0 0 / 6px 100%;
+    border-radius: 30px;
+}
+.btn{
+    color: white !important;
+    transition: 250ms;
+}
+
+.btn:hover{
+   transform: scale(1.1);
+}
+
+@media (max-width: 780px) {
+    #topo{
+        margin-left: 50px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    p, li {
+        font-size: 1rem !important;
+    }
+    h1 {
+        font-size: 1.5rem !important;
+    }
+    #todayDate{
+        position: absolute;
+        top: 0;
+    }
+    .rounded-md{
+        font-size: 1.1em !important;
+    }
+    ul{
+        margin-left: -30px;
+    }
+    .jumbotron, .flex-r{
+        flex-wrap: wrap;
+        flex-direction: column;
+    }	
+    .jumbotron{
+        background-color: transparent !important;
+        text-align: center !important;
+        margin-left: 10px;
+    }
+    .jumbotron h1{
+        margin-top: -10px;
+    }
+    .mx-15, .ml-15, .mr-15{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin: 0px !important;
+    }
+    .game-r{
+        margin-left: -25px !important;
+    }
+    .lead{
+        width: 200% !important; 
+        margin-top: -5px !important;
+    }
+    .container p{
+        width: 150% !important; 
+        margin-top: -5px !important;
+        text-align: center;
+    }
+    .container h1{
+        text-align: center;
+    }
+    .jumbotron div, .container {
+        display: flex; 
+        flex-direction: column; 
+        align-items: center  ;
+    }
+    footer p{
+        font-size: 8px !important;
+    }
+    #sidebar{
+        overflow-y: auto;
+    }
+    #sidebar > div:nth-child(1){
+        margin-bottom: 50px !important;
+    }
+
+
+  }
